@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/bc09df0ab2.js" crossorigin="anonymous"></script>
+    <title>Formulario</title>
+</head>
+<body>
+    <nav class="navbar is-fixed-top is-info is-active" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">Fórmulas</a>
+                <a id="ham" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">Menú</a>
+                        <div class="navbar-dropdown">
+                            <a href="/formulas/add" class="navbar-item">Nueva fórmula</a>
+                            <a href="/formulas" class="navbar-item">Todas las fórmulas</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section class="section mt-6">
+        <div class="container">
+
+            {{{ body }}}
+
+        </div>
+    </section>
+
+    <footer class="footer has-background-info">
+        <div class="content has-text-centered">
+            <a href="http://eduardoaguilar.dev" class="has-text-white">Lalo Aguilar &copy <span id='date'></span></a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

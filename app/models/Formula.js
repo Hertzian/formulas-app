@@ -1,26 +1,13 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
 
-const Formula = db.define('formulas', {
-    name:{
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
-    },
-    units:{
-        type: Sequelize.STRING,
-        validate: {
-            isNumeric: true
-        }
-    },
-    createdAt:{
-        type: Date,
-        validate: {
-            isDate: true
-        }
-    }
+const Formula = db.define('formula', {
+  name: {
+    type: Sequelize.STRING
+  },
+  unit: {
+    type: Sequelize.STRING
+  },
 });
 
 module.exports = Formula;

@@ -1,0 +1,20 @@
+<h1 class="title">Todas</h1>
+
+{{#each formulas}}
+    {{#dataValues}}
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title is-relative" style="width: 100%;">{{name}}</p>
+                <a href="#" class="card-footer-item"><span class="icon has-text-success"><i class="far fa-eye"></i></span></a>
+                <a href="#" class="card-footer-item"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a>
+                <a href="#" class="card-footer-item"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+            </header>
+        </div>
+    {{/dataValues}}
+            
+{{else}}
+    <h2>No hay formulas</h2>
+{{/each}}
+
+    
+

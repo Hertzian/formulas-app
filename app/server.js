@@ -5,12 +5,22 @@ const path = require('path');
 dotenv.config({path: './config/config.env'});
 const db = require('./config/db');
 
-const app = express();
-
 // // test db
 db.authenticate()
-    .then(() => console.log('Database connected...'))
-    .catch(err => console.log(err));
+.then(() => console.log('Database connected...'))
+.catch(err => console.log(err));
+
+const app = express();
+
+// Handlebars
+app.engine('hbs', hbs({
+    defaultLayout: 'main',
+    extname: 'hbs'
+}));
+app.set('view engine', 'hbs');
+
+// set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res, next) => {
     res.send('index');
