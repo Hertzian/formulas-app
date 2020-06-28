@@ -1,8 +1,7 @@
-const {Sequelize} = require('sequelize');
+const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('formulas',' root', '', {
+module.exports = new Sequelize('formulas','root', '123456', {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    port: process.env.DB_PORT || '3306'
 });
-
-module.exports = sequelize;
