@@ -3,14 +3,14 @@ const dotenv = require('dotenv');
 const hbs = require('express-handlebars');
 const path = require('path');
 dotenv.config({path: './config/config.env'});
-const db = require('./config/db');
-
-// // test db
-db.authenticate()
-.then(() => console.log('Database connected...'))
-.catch(err => console.log(err));
+const errorRoutes = require('./routes/error');
+const sequelize = require('./config/db');
 
 const app = express();
+
+// models to relationship
+const Formula = require('./models/formula');
+const Ingredient = require('./models/ingredient');
 
 // Handlebars
 app.engine('hbs', hbs({
@@ -19,16 +19,35 @@ app.engine('hbs', hbs({
 }));
 app.set('view engine', 'hbs');
 
+// init routes
+const formulaRoutes = require('./routes/formulas')
+
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res, next) => {
-    res.send('index');
+    res.render('index');
 });
 
 // Routes
-app.use('/formulas', require('./routes/formulas'));
+app.use('/formulas/', formulaRoutes);
+app.use(errorRoutes.get404);
 
-const PORT = process.env.PORT || 5000;
+// relationship
+Ingredient.belongsTo(Formula, {
+    constraints: true,
+    onDelete: 'CASCADE'
+});
+Formula.hasMany(Ingredient);
 
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+
+sequelize
+    // .sync({force: true})
+    .sync()
+    .then(result => {
+        app.listen(
+            process.env.PORT,
+            console.log(`Server running on port ${process.env.PORT}`)
+        );
+    })
+    .catch(err => console.log(err))

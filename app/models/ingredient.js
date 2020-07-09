@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
 
-const Formula = db.define('formula', {
+const Ingredient = db.define('ingredient', {
   name: {
     type: Sequelize.STRING
   },
@@ -10,4 +10,4 @@ const Formula = db.define('formula', {
   },
 });
 
-module.exports = Formula;
+module.exports = Ingredient;

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "agua",
+        "unit": 1,
+        "formulaId": 1
+    },
+    {
+        "id": 2,
+        "name": "arena",
+        "unit": 2,
+        "formulaId": 1
+    },
+    {
+        "id": 3,
+        "name": "cal",
+        "unit": 3,
+        "formulaId": 1
+    },
+    {
+        "id": 4,
+        "name": "harina",
+        "unit": 1,
+        "formulaId": 2
+    },
+    {
+        "id": 5,
+        "name": "royal",
+        "unit": 2,
+        "formulaId": 2
+    },
+    {
+        "id": 6,
+        "name": "leche",
+        "unit": 3,
+        "formulaId": 2
+    }
+]
