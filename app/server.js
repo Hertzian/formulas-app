@@ -22,6 +22,11 @@ app.set('view engine', 'hbs');
 // init routes
 const formulaRoutes = require('./routes/formulas')
 
+// to encode req and can catch it! (previously uses body-Parser)
+app.use(express.urlencoded(
+    { extended: false }
+));
+
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 

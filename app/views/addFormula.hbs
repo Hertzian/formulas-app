@@ -1,30 +1,32 @@
-<h1 class="title">Agregar Fórmula</h1>
+{{!-- <h1 class="title">Agregar Fórmula</h1> --}}
 
 <div class="card">
 
-    <form action="">
+    <form action="/formulas/add" method="POST">
+
+        <header class="card-header">
+            <p class="card-header-title">Agregar Fórmula</p>
+            <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+            </a>
+        </header>
 
         <div class="card-content">
+            <div class="content">
 
-            <div class="field">
-                <label class="label">Ingrediente:</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Text input">
-                </div>
+                <label class="label">Formula</label>
+                <input class="input" type="text" name="name" placeholder="Escribe el nombre...">
+
+                <label class="label">unidad</label>
+                <input class="input" type="number" name="unit" placeholder="Cuanto necesitas...">
+
             </div>
-
-            <div class="field">
-                <label class="label">Cantidad:</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Text input">
-                </div>
-            </div>
-
         </div>
 
         <footer class="card-footer">
-            <a href="ingredientes.html" class="card-footer-item"><span class="icon has-text-success"><i class="fas fa-check"></i></span></a>
-            <a href="#" class="card-footer-item"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+
+            <button type="subtmit" class="card-footer-item button is-white"><span class="icon has-text-success"><i class="fas fa-check"></i></span></a>
+            <button type="subtmit" class="card-footer-item button is-white"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
         </footer>
 
     </form>

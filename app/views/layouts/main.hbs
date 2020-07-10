@@ -11,7 +11,7 @@
     <nav class="navbar is-fixed-top is-info is-active" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="#">Fórmulas</a>
+                <a class="navbar-item" href="/formulas">Fórmulas</a>
                 <a id="ham" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -23,8 +23,8 @@
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">Menú</a>
                         <div class="navbar-dropdown">
-                            <a href="/formulas/add" class="navbar-item">Nueva fórmula</a>
                             <a href="/formulas" class="navbar-item">Todas las fórmulas</a>
+                            <a href="/formulas/add" class="navbar-item">Nueva fórmula</a>
                         </div>
                     </div>
                 </div>
@@ -43,10 +43,10 @@
 
     <footer class="footer has-background-info">
         <div class="content has-text-centered">
-            <a href="http://eduardoaguilar.dev" class="has-text-white">Lalo Aguilar &copy {{actualYear}}</a>
+            <a href="http://eduardoaguilar.dev" class="has-text-white">Lalo Aguilar &copy <span id="date"></span></a>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,102 @@
+<div class="card">
+
+    <form action="/formulas/add-ingredients" method="POST">
+
+        <header class="card-header">
+            <p class="card-header-title">#{{id}} Ingredientes para hacer {{name}}</p>
+            <a href="#" class="card-header-icon" aria-label="more options">
+                {{!-- <span class="icon"><i class="fas fa-angle-down" aria-hidden="true"></i></span> --}}
+            </a>
+        </header>
+
+        <div class="card-content">
+            <div class="content">
+
+                <label class="label">Nuevo ingrediente</label>
+                <input class="input" type="text" name="name" placeholder="Escribe el nombre...">
+
+                <label class="label">Cantidad</label>
+                <input class="input" type="number" name="unit" placeholder="Cuanto requiere...">
+                <input type="hidden" name="formulaId" value="{{id}}">
+
+            </div>
+        </div>
+
+        <footer class="card-footer">
+
+            <button type="subtmit" class="card-footer-item button is-white"><span class="has-text-success">Agregar</span><span class="icon has-text-success"><i class="fas fa-check"></i></span></a>
+            <button type="subtmit" class="card-footer-item button is-white"><span class="has-text-danger">Borrar</span><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
+        </footer>
+
+    </form>
+
+</div>
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title is-relative" style="width: 100%;">Cantidad para hacer un tanto:</p>
+
+        
+    </header>
+</div>
+
+{{#each ingredients}}
+    {{#dataValues}}
+        <div class="card">
+            <header class="card-header">
+
+                <p class="card-header-title is-relative" style="width: 100%;">{{name}}</p>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Unidades</label>
+                    </div>
+
+                    <div class="field-body">
+
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <input class="input" type="text" placeholder="Name" value="{{unit}}">
+                            </p>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="card-footer-item"></div>
+                <a href="#{{id}}" class="card-footer-item"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a>
+                <a id="deleteIngredient-{{id}}" href="#" class="card-footer-item" onclick="openModal(this.id)"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+            </header>
+        </div>
+
+        {{!-- modal --}}
+        <div id="modal-deleteIngredient-{{id}}" class="modal 
+         {{!-- is-active --}}
+         ">
+            <div class="modal-background"></div>
+                <div class="modal-content">
+                    <!-- Any other Bulma elements you want -->
+                    <div class="box">
+                        <p>Estás seguro de borrar el ingrediente?</p>
+
+                        <div class="field is-grouped">
+                            <form action="#{{id}}" method="post">
+                                <button class="button is-danger mx-1" type="submit">Sí eliminar</button>
+                            </form>
+                            <button class="button is-primary mx-1">cancelar</button>
+
+                            
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
+    {{/dataValues}}
+            
+{{else}}
+    <h2>No hay ingredientes :(</h2>
+{{/each}}
