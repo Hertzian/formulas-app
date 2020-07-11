@@ -56,7 +56,7 @@
 
                         <div class="field">
                             <p class="control is-expanded has-icons-left">
-                                <input class="input" type="text" placeholder="Name" value="{{unit}}">
+                                <input id="editValue-{{id}}" class="input " type="text" placeholder="Name" value="{{unit}}">
                             </p>
                         </div>
                         
@@ -65,8 +65,13 @@
                 </div>
 
                 <div class="card-footer-item"></div>
-                <a href="#{{id}}" class="card-footer-item"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a>
-                <a id="deleteIngredient-{{id}}" href="#" class="card-footer-item" onclick="openModal(this.id)"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+                <a id="editIngredietBtn-{{id}}" class="card-footer-item editIngredient" onclick="submitEditIngredient(this.id)"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a>
+                <a class="card-footer-item deleteIngredientBtn"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+
+                <form id="editForm-{{id}}" action="/formulas/edit-ingredients/{{id}}" method="post">
+                    <input id="hiddenEdit-{{id}}" type="hidden" name="unit" value="">
+                </form>
+
             </header>
         </div>
 
@@ -81,10 +86,10 @@
                         <p>Estás seguro de borrar el ingrediente?</p>
 
                         <div class="field is-grouped">
-                            <form action="#{{id}}" method="post">
+                            <form action="/formulas/delete-ingredients/{{id}}" method="post">
                                 <button class="button is-danger mx-1" type="submit">Sí eliminar</button>
                             </form>
-                            <button class="button is-primary mx-1">cancelar</button>
+                            <button class="button is-primary mx-1 closeBtn">cancelar</button>
 
                             
                             </p>
@@ -98,5 +103,9 @@
     {{/dataValues}}
             
 {{else}}
-    <h2>No hay ingredientes :(</h2>
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title is-relative" style="width: 100%;">No hay ingredientes :(</p>
+        </header>
+    </div>
 {{/each}}

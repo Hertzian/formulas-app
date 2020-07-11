@@ -3,42 +3,49 @@ const menu = document.getElementById('navbarBasicExample');
 const section = document.getElementsByTagName('section');
 const footer = document.querySelectorAll('.footer')
 const date = document.getElementById('date');
+const modalClose = document.getElementsByClassName('modal-close');
+const btnClose = document.getElementsByClassName('closeBtn');
+const deleteIngredientBtn = document.getElementsByClassName('deleteIngredientBtn');
+const editIngredientBtn = document.getElementsByClassName('editIngredient');
+const editIngredientValue = document.getElementsByClassName('editValue');
 
-function openMenu(){
-    ham.classList.toggle('is-active')
-    menu.classList.toggle('is-active')
+// open/close menu
+ham.addEventListener('click', () => {
+    ham.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
+});
+
+// open/close modal
+for (let i = 0; i < modalClose.length; i++) {
+    modalClose[i].addEventListener('click', () => {
+        document.querySelector('.modal').classList.remove('is-active');
+    });
+
+    btnClose[i].addEventListener('click', () => {
+        document.querySelector('.modal').classList.remove('is-active');
+    });
+
+    deleteIngredientBtn[i].addEventListener('click', () => {
+        document.querySelector('.modal').classList.add('is-active');
+    });
 }
 
-function closeMenu(){
-    ham.classList.remove('is-active')
-    menu.classList.remove('is-active')
-}
+function submitEditIngredient(editIngredient){
+    const pureId = editIngredient.slice(17)
+    const value = document.getElementById(`editValue-${pureId}`)
+    const input = document.getElementById(`hiddenEdit-${pureId}`)
+    const form = document.getElementById(`editForm-${pureId}`)
 
-function menuInit(){
-    ham.addEventListener('click', openMenu);
+    input.value = value.value;
+    // console.log(input)
+    // console.log(value)
+    // console.log(form)
+    form.submit();
+
     
-    for (let i = 0; i < section.length; i++) {
-        section[i].addEventListener('click', closeMenu);
-    }
-    
-    for (let i = 0; i < footer.length; i++) {
-        footer[i].addEventListener('click', closeMenu);
-    }
-}
-
-function openModal(deleteIngredient){
-    const modal = document.getElementById(`modal-${deleteIngredient}`);
-    const close = document.querySelector('.modal-close');
-    if(close){
-        close.addEventListener('click', (e) => {
-            close.classList.remove('is-active')
-
-        })
-    }
-    modal.classList.toggle('is-active');
 }
 
 
+// footer year
 date.innerText = new Date().getFullYear();
 
-menuInit();

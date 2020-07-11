@@ -83,16 +83,58 @@ router.post('/add-ingredients', (req, res, next) => {
     const formulaId = req.body.formulaId;
     const {name, unit} = req.body;
 
-    Ingredient.create({
-        name: name,
-        unit: unit,
-        formulaId: formulaId
-    })
-    .then(result => {
-        console.log('Ingredient added')
-        res.redirect(`/formulas/add-ingredients/${formulaId}`)
-    })
-    .catch(err => console.error(err))
+    Ingredient
+        .create({
+            name: name,
+            unit: unit,
+            formulaId: formulaId
+        })
+        .then(result => {
+            console.log('Ingredient added')
+            res.redirect(`/formulas/add-ingredients/${formulaId}`)
+        })
+        .catch(err => console.error(err))
+});
+
+// @dec     Edit ingredient
+// @route   POST /formulas/edit-ingredients/:ingredientId
+// @access  Public
+router.post('/edit-ingredients/:ingredientId', (req, res, next) => {
+    const ingredientId = req.params.ingredientId;
+
+    Ingredient
+        .findByPk(ingredientId)
+        .then(ingredient => {
+            ingredient
+                .update({
+                    unit: req.body.unit,
+                })
+
+            setTimeout(() => {
+                res.redirect(`/formulas/add-ingredients/${ingredient.formulaId}`)
+            }, 500);
+
+        })
+        .catch(err => console.error(err))
+});
+
+// @dec     Delete ingredient
+// @route   POST /formulas/delete-ingredients/:ingredientId
+// @access  Public
+router.post('/delete-ingredients/:ingredientId', (req, res, next) => {
+    const ingredientId = req.params.ingredientId;
+
+    Ingredient
+        .findByPk(ingredientId)
+        .then(ingredient => {
+            ingredient
+                .destroy()
+
+            setTimeout(() => {
+                res.redirect(`/formulas/add-ingredients/${ingredient.formulaId}`)
+            }, 500);
+        })
+        .catch(err => console.error(err))
 });
 
 module.exports = router;
