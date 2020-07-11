@@ -16,7 +16,7 @@
                 <input class="input" type="text" name="name" placeholder="Escribe el nombre...">
 
                 <label class="label">Cantidad</label>
-                <input class="input" type="number" name="unit" placeholder="Cuanto requiere...">
+                <input class="input" type="text" name="unit" placeholder="Cuanto requiere...">
                 <input type="hidden" name="formulaId" value="{{id}}">
 
             </div>
@@ -45,7 +45,7 @@
         <div class="card">
             <header class="card-header">
 
-                <p class="card-header-title is-relative" style="width: 100%;">{{name}}</p>
+                <p class="card-header-title is-relative ingredient" style="width: 100%;">#{{id}} {{name}}</p>
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -56,7 +56,7 @@
 
                         <div class="field">
                             <p class="control is-expanded has-icons-left">
-                                <input id="editValue-{{id}}" class="input " type="text" placeholder="Name" value="{{unit}}">
+                                <input id="editValue-{{id}}" class="input quantity" type="text" placeholder="Name" value="{{unit}}">
                             </p>
                         </div>
                         
@@ -76,14 +76,12 @@
         </div>
 
         {{!-- modal --}}
-        <div id="modal-deleteIngredient-{{id}}" class="modal 
-         {{!-- is-active --}}
-         ">
+        <div id="modal-deleteIngredient-{{id}}" class="modal">
             <div class="modal-background"></div>
                 <div class="modal-content">
                     <!-- Any other Bulma elements you want -->
                     <div class="box">
-                        <p>Estás seguro de borrar el ingrediente?</p>
+                        <p>Estás seguro de borrar el ingrediente #{{id}}?</p>
 
                         <div class="field is-grouped">
                             <form action="/formulas/delete-ingredients/{{id}}" method="post">
@@ -99,7 +97,6 @@
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
 
-
     {{/dataValues}}
             
 {{else}}
@@ -109,3 +106,61 @@
         </header>
     </div>
 {{/each}}
+
+<hr>
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title is-relative" style="width: 100%;">#{{id}} Qué cantidad quieres hacer de {{name}}?</p>
+
+        
+    </header>
+
+        <div class="card-content">
+            <div class="content">
+
+                <label class="label">Cantidad</label>
+                <input id="wishValue" class="input" type="text" name="" placeholder="Cuanto requiere..." value="">
+                
+            </div>
+        </div>
+
+        <footer class="card-footer">
+            <button id="calculate" class="card-footer-item button is-white"><span class="has-text-success">Calcular</span><span class="icon has-text-success"><i class="fas fa-check"></i></span></a>
+            <button id="again" class="card-footer-item button is-white"><span class="has-text-danger">Otra vez</span><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
+        </footer>
+
+</div>
+
+<hr>
+
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title is-relative" style="width: 100%;">#{{id}} Resultado</p>
+    </header>
+</div>
+
+<div id="result"></div>
+
+
+{{!-- dummy template --}}
+{{!-- <div class="card">
+    <header class="card-header">
+        <p class="card-header-title is-relative" style="width: 100%;">any field</p>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal"><label class="label">Unidades</label></div>
+
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input id="editValue-" class="input " type="text" placeholder="Name" value="any">
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer-item"></div>
+        <div id="editIngredietBtn-" class="card-footer-item editIngredient"><span class="icon has-text-success"><i class="fas fa-arrow-left"></i></span></div>
+    </header>
+</div> --}}
