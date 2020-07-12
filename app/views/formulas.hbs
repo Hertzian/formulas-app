@@ -7,8 +7,30 @@
                 <p class="card-header-title is-relative" style="width: 100%;">{{name}}</p>
                 <a href="/formulas/add-ingredients/{{id}}" class="card-footer-item"><span class="icon has-text-success"><i class="far fa-eye"></i></span></a>
                 {{!-- <a href="#" class="card-footer-item"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a> --}}
-                <a href="#" class="card-footer-item"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+                <a id="deleteFormulaBtn-{{id}}" class="card-footer-item"onclick="deleteModal(this.id)"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
             </header>
+        </div>
+
+        {{!-- modal --}}
+        <div id="modal-deleteIngredient-{{id}}" class="modal">
+            <div class="modal-background"></div>
+                <div class="modal-content">
+                    <!-- Any other Bulma elements you want -->
+                    <div class="box">
+                        <p>Estás seguro de borrar {{name}}?</p>
+
+                        <div class="field is-grouped">
+                            <form action="/formulas/delete/{{id}}" method="post">
+                                <button class="button is-danger mx-1" type="submit">Sí eliminar</button>
+                            </form>
+                            <button id="closeBtn-{{id}}" class="button is-primary mx-1 closeBtn" onclick="closeDeleteModal(this.id)">cancelar</button>
+
+                            
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <button id="CloseBtn-{{id}}" class="modal-close is-large" aria-label="close"onclick="closeDeleteModal(this.id)"></button>
         </div>
     {{/dataValues}}
             

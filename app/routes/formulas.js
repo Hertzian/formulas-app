@@ -108,10 +108,11 @@ router.post('/edit-ingredients/:ingredientId', async (req, res, next) => {
 // @dec     Delete ingredient
 // @route   POST /formulas/delete-ingredients/:ingredientId
 // @access  Public
-router.post('/delete-ingredients/:ingredientId', (req, res, next) => {
+router.post('/delete-ingredients/:ingredientId', async (req, res, next) => {
     try {
         const ingredientId = req.params.ingredientId;
-        Ingredient.findByPk(ingredientId).destroy();
+        const ingredient = await Ingredient.findByPk(ingredientId)
+        ingredient.destroy();
     
         setTimeout(() => {
             res.redirect(`/formulas/add-ingredients/${ingredient.formulaId}`)
@@ -128,10 +129,11 @@ router.post('/delete-ingredients/:ingredientId', (req, res, next) => {
 router.post('/delete/:formulaId', async (req, res, next) => {
     try {
         const formulaId = req.params.formulaId;
-        Formula.findByPk(formulaId).destroy();
+        const formula = await Formula.findByPk(formulaId);
+        formula.destroy();
 
         setTimeout(() => {
-            res.redirect('/')
+            res.redirect('/formulas')
         }, 500);
     } catch (err) {
         console.log(err)

@@ -1,6 +1,5 @@
 const ham = document.getElementById('ham');
 const menu = document.getElementById('navbarBasicExample');
-// const modalClose = document.getElementsByClassName('modal-close');
 const btnClose = document.getElementsByClassName('closeBtn');
 const deleteIngredientBtn = document.getElementsByClassName('deleteIngredientBtn');
 const quantity = document.getElementsByClassName('quantity');
@@ -9,7 +8,6 @@ const calculate = document.getElementById('calculate');
 const wishValue = document.getElementById('wishValue');
 const result = document.getElementById('result');
 const again = document.getElementById('again');
-// const modal = document.querySelector('.modal');
 
 // open/close menu
 ham.addEventListener('click', () => {
@@ -17,70 +15,63 @@ ham.addEventListener('click', () => {
     menu.classList.toggle('is-active');
 });
 
+// close delete ingredient modal
+function closeDeleteModal(modalId){
+    const pureId = modalId.split('-');
+    const toClose = document.getElementById(`modal-deleteIngredient-${pureId[1]}`);
+    toClose.classList.remove('is-active');
+}
 
-
-
-// open/close modal
-
-// for (let i = 0; i < modalClose.length; i++) {
-//     modalClose[i].addEventListener('click', () => {
-//         modal.classList.remove('is-active');
-//         console.log('cross button')
-//     });
-    
-//     btnClose[i].addEventListener('click', () => {
-//         console.log('cancel button')
-//     });
-// }
-
-// function closeModal(buttonId){
-    
-//     modal.classList.remove('is-active');
-// }
-
-
-
-
-
-
-
+// open delete modal
 function deleteModal(buttonId){
-    let toOpen = document.getElementById(`modal-${buttonId}`)
+    const pureId = buttonId.split('-')
+    let toOpen = document.getElementById(`modal-deleteIngredient-${pureId[1]}`)
     toOpen.classList.add('is-active')
 }
 
 // to edit ingredient unit
 function submitEditIngredient(editIngredient){
-    const pureId = editIngredient.slice(17)
-    const value = document.getElementById(`editValue-${pureId}`)
-    const input = document.getElementById(`hiddenEdit-${pureId}`)
-    const form = document.getElementById(`editForm-${pureId}`)
+    const pureId = editIngredient.split('-')
+    const value = document.getElementById(`editValue-${pureId[1]}`)
+    const input = document.getElementById(`hiddenEdit-${pureId[1]}`)
+    const form = document.getElementById(`editForm-${pureId[1]}`)
 
     input.value = value.value;
     form.submit();
 }
 
+function eraseFunction(){
+    const forms = document.getElementsByClassName('eraseFunction');
+    for (const form of forms) {
+        form.reset();
+    }
+}
+
 // reload page
-again.addEventListener('click', () => {
-    location.reload();
-})
+if(again){
+    again.addEventListener('click', () => {
+        location.reload();
+    })
+}
 
 // calculate values
-calculate.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    let rawValues = [];
+if(calculate){
+    calculate.addEventListener('click', (e) => {
+        e.preventDefault();
     
-    for (let i = 0; i < quantity.length; i++) {
-        rawValues.push(quantity[i].value * wishValue.value)
-
-        const htmlString = resultTemplate(rawValues[i], ingredient[i].innerText)
-        const resultElement = createTemplate(htmlString)
-        calculate.setAttribute('disabled', true)
-
-        result.append(resultElement);
-    }
-});
+        let rawValues = [];
+        
+        for (let i = 0; i < quantity.length; i++) {
+            rawValues.push(quantity[i].value * wishValue.value)
+    
+            const htmlString = resultTemplate(rawValues[i], ingredient[i].innerText)
+            const resultElement = createTemplate(htmlString)
+            calculate.setAttribute('disabled', true)
+    
+            result.append(resultElement);
+        }
+    });
+}
     
 // create html template
 function createTemplate(HTMLString){

@@ -1,8 +1,6 @@
-{{!-- <h1 class="title">Agregar Fórmula</h1> --}}
-
 <div class="card">
 
-    <form action="/formulas/add" method="POST">
+    <form class="eraseFunction" action="/formulas/add" method="POST">
 
         <header class="card-header">
             <p class="card-header-title">Agregar Fórmula</p>
@@ -26,7 +24,7 @@
         <footer class="card-footer">
 
             <button type="subtmit" class="card-footer-item button is-white"><span class="icon has-text-success"><i class="fas fa-check"></i></span></a>
-            <button type="subtmit" class="card-footer-item button is-white"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
+            <button type="button" class="card-footer-item button is-white" onclick="eraseFunction()"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
         </footer>
 
     </form>

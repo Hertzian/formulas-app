@@ -1,6 +1,6 @@
 <div class="card">
 
-    <form action="/formulas/add-ingredients" method="POST">
+    <form class="eraseFunction" action="/formulas/add-ingredients" method="POST">
 
         <header class="card-header">
             <p class="card-header-title">#{{id}} Ingredientes para hacer {{name}}</p>
@@ -25,7 +25,7 @@
         <footer class="card-footer">
 
             <button type="subtmit" class="card-footer-item button is-white"><span class="has-text-success">Agregar</span><span class="icon has-text-success"><i class="fas fa-check"></i></span></a>
-            <button type="subtmit" class="card-footer-item button is-white"><span class="has-text-danger">Borrar</span><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
+            <button type="button" id="eraseBtn" class="card-footer-item button is-white" onclick="eraseFunction()"><span class="has-text-danger">Borrar</span><span class="icon has-text-danger"><i class="fas fa-times"></i></span></button>
         </footer>
 
     </form>
@@ -87,14 +87,14 @@
                             <form action="/formulas/delete-ingredients/{{id}}" method="post">
                                 <button class="button is-danger mx-1" type="submit">Sí eliminar</button>
                             </form>
-                            <button class="button is-primary mx-1 closeBtn">cancelar</button>
+                            <button id="closeBtn-{{id}}" class="button is-primary mx-1 closeBtn" onclick="closeDeleteModal(this.id)">cancelar</button>
 
                             
                             </p>
                         </div>
                     </div>
                 </div>
-            <button class="modal-close is-large" aria-label="close"></button>
+            <button id="CloseBtn-{{id}}" class="modal-close is-large" aria-label="close"onclick="closeDeleteModal(this.id)"></button>
         </div>
 
     {{/dataValues}}
