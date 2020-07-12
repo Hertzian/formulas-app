@@ -66,7 +66,7 @@
 
                 <div class="card-footer-item"></div>
                 <a id="editIngredietBtn-{{id}}" class="card-footer-item editIngredient" onclick="submitEditIngredient(this.id)"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a>
-                <a class="card-footer-item deleteIngredientBtn"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+                <a id="deleteIngredient-{{id}}" class="card-footer-item deleteIngredientBtn" onclick="deleteModal(this.id)"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
 
                 <form id="editForm-{{id}}" action="/formulas/edit-ingredients/{{id}}" method="post">
                     <input id="hiddenEdit-{{id}}" type="hidden" name="unit" value="">

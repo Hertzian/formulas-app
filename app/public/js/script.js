@@ -1,6 +1,6 @@
 const ham = document.getElementById('ham');
 const menu = document.getElementById('navbarBasicExample');
-const modalClose = document.getElementsByClassName('modal-close');
+// const modalClose = document.getElementsByClassName('modal-close');
 const btnClose = document.getElementsByClassName('closeBtn');
 const deleteIngredientBtn = document.getElementsByClassName('deleteIngredientBtn');
 const quantity = document.getElementsByClassName('quantity');
@@ -9,7 +9,7 @@ const calculate = document.getElementById('calculate');
 const wishValue = document.getElementById('wishValue');
 const result = document.getElementById('result');
 const again = document.getElementById('again');
-const modal = document.querySelector('.modal');
+// const modal = document.querySelector('.modal');
 
 // open/close menu
 ham.addEventListener('click', () => {
@@ -17,19 +17,36 @@ ham.addEventListener('click', () => {
     menu.classList.toggle('is-active');
 });
 
+
+
+
 // open/close modal
-for (let i = 0; i < modalClose.length; i++) {
-    modalClose[i].addEventListener('click', () => {
-        modal.classList.remove('is-active');
-    });
 
-    btnClose[i].addEventListener('click', () => {
-        modal.classList.remove('is-active');
-    });
+// for (let i = 0; i < modalClose.length; i++) {
+//     modalClose[i].addEventListener('click', () => {
+//         modal.classList.remove('is-active');
+//         console.log('cross button')
+//     });
+    
+//     btnClose[i].addEventListener('click', () => {
+//         console.log('cancel button')
+//     });
+// }
 
-    deleteIngredientBtn[i].addEventListener('click', () => {
-        modal.classList.add('is-active');
-    });
+// function closeModal(buttonId){
+    
+//     modal.classList.remove('is-active');
+// }
+
+
+
+
+
+
+
+function deleteModal(buttonId){
+    let toOpen = document.getElementById(`modal-${buttonId}`)
+    toOpen.classList.add('is-active')
 }
 
 // to edit ingredient unit
@@ -46,7 +63,6 @@ function submitEditIngredient(editIngredient){
 // reload page
 again.addEventListener('click', () => {
     location.reload();
-    console.log(again)
 })
 
 // calculate values
