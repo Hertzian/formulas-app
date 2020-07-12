@@ -109,5 +109,4 @@ function resultTemplate(quantity, ingredient){
 }
 
 // footer year
-document.querySelectorAll('.footer').innerText = new Date().getFullYear();
-
+document.getElementById('date').innerText = new Date().getFullYear();
