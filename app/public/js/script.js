@@ -50,7 +50,9 @@ function eraseFunction(){
 // reload page
 if(again){
     again.addEventListener('click', () => {
-        location.reload();
+        // location.reload();
+        result.innerHTML = '';
+        wishValue.value = '';
     })
 }
 
