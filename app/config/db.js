@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const conn = new Sequelize('formulas','root', '123456', {
+const conn = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: 'localhost',
     dialect: 'mysql',
     port: process.env.DB_PORT
