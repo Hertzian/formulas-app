@@ -4,7 +4,7 @@ const hbs = require('express-handlebars');
 const path = require('path');
 dotenv.config({path: './config/config.env'});
 const errorRoutes = require('./routes/error');
-const sequelize = require('./config/db');
+// const sequelize = require('./config/db');
 
 const app = express();
 
@@ -46,13 +46,14 @@ Ingredient.belongsTo(Formula, {
 Formula.hasMany(Ingredient);
 
 
-sequelize
-    // .sync({force: true})
-    .sync()
-    .then(result => {
+// sequelize
+//     // .sync({force: true})
+//     .sync()
+//     .then(result => {
         app.listen(
-            process.env.PORT,
-            console.log(`Server running on port ${process.env.PORT}`)
+            // process.env.PORT,
+            5000,
+            // console.log(`Server running on port ${process.env.PORT}`)
         );
-    })
-    .catch(err => console.log(err))
+    // })
+    // .catch(err => console.log(err))

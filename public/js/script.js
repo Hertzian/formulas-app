@@ -51,6 +51,7 @@ function eraseFunction(){
 if(again){
     again.addEventListener('click', () => {
         // location.reload();
+        calculate.removeAttribute('disabled', true)
         result.innerHTML = '';
         wishValue.value = '';
     })
@@ -60,6 +61,10 @@ if(again){
 if(calculate){
     calculate.addEventListener('click', (e) => {
         e.preventDefault();
+
+        console.log(wishValue.value)
+
+        validateCalculate(wishValue.value)
     
         let rawValues = [];
         
@@ -73,6 +78,18 @@ if(calculate){
             result.append(resultElement);
         }
     });
+}
+
+function validateCalculate(input){
+    const re = /^[0-9]*$/;
+    if(!re.test(input.value)){
+        let p = document.createElement('p');
+        p.textContent = 'Introduce solo numeros';
+        p.setAttribute('class', 'help is-danger');
+        // const parentDiv = wishValue.parentNode;
+        wishValue.parentNode.insertBefore(p, wishValue)
+        calculate.setAttribute('disabled', true)
+    }
 }
     
 // create html template
