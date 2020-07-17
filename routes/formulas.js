@@ -1,15 +1,17 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../config/db')
 const Formula = require('../models/formula');
 const Ingredient = require('../models/ingredient');
+const router = express.Router();
 
 // @dec     get all formulas
 // @route   /formulas
 // @access  Public
 router.get('/', async (req, res, next) => {
     try {
-        let formulas = await Formula.findAll();
+        let formulas = await Formula.find();
+        console.log(formulas);
+
+        // formulas.forEach(formula => console.log(formula.name))
         
         res.render('formulas', {
             formulas
@@ -17,7 +19,6 @@ router.get('/', async (req, res, next) => {
     } catch (err) {
         console.log(err)
     }
-    
 });
 
 // @dec     Display Create formula view
@@ -32,14 +33,18 @@ router.get('/add', (req, res, next) => {
 // @access  Public
 router.post('/add', async (req, res, next) => {
     try {
-        await Formula.create({
-            name: req.body.name,
-            unit: req.body.unit
-        });
-        setTimeout(() => {
-            res.redirect('/formulas');
-        }, 500);
+        console.log(req.body.name)
+        console.log(req.body.unit)
+        // const formula = await Formula.create(req.body);
+
+
+        res.render('formulas', {
+            message: 'Se agregó una fórmula'
+        })
+
+        console.log(message)
     } catch (err) {
+        res.render('formulas', {error: 'Ha ocurrido un error'})
         console.log(err)
     }
 });
@@ -48,96 +53,35 @@ router.post('/add', async (req, res, next) => {
 // @route   GET /formulas/add-ingredients/:formulaId
 // @access  Public
 router.get('/add-ingredients/:formulaId', async (req, res, next) => {
-    try {
-        const formulaId = req.params.formulaId;
-        const formula = await Formula.findByPk(formulaId);
-
-        const ingredients = await Ingredient.findAll({
-            where: {formulaId: formulaId}
-        });
-
-        res.render('addIngredients', {
-            id: formula.id,
-            name: formula.name,
-            ingredients: ingredients
-        });
-        
-    } catch (err) {
-        console.log(err)
-    }
+    
 });
 
 // @dec     Add new ingredient to selected formula
 // @route   POST /formulas/add-ingredients
 // @access  Public
 router.post('/add-ingredients', async (req, res, next) => {
-    try {
-        const formulaId = req.body.formulaId;
-        const {name, unit} = req.body;
     
-        await Ingredient
-            .create({
-                name: name,
-                unit: unit,
-                formulaId: formulaId
-            });
-
-        res.redirect(`/formulas/add-ingredients/${formulaId}`)
-    } catch (err) {
-        console.log(err);        
-    }
 });
 
 // @dec     Edit ingredient
 // @route   POST /formulas/edit-ingredients/:ingredientId
 // @access  Public
 router.post('/edit-ingredients/:ingredientId', async (req, res, next) => {
-    try {
-        const ingredientId = req.params.ingredientId;
-        let ingredient = await Ingredient.findByPk(ingredientId);
-        ingredient.update({unit: req.body.unit});
     
-        setTimeout(() => {
-            res.redirect(`/formulas/add-ingredients/${ingredient.formulaId}`)
-        }, 500);
-    } catch (err) {
-        console.log(err)
-    }
 });
 
 // @dec     Delete ingredient
 // @route   POST /formulas/delete-ingredients/:ingredientId
 // @access  Public
 router.post('/delete-ingredients/:ingredientId', async (req, res, next) => {
-    try {
-        const ingredientId = req.params.ingredientId;
-        const ingredient = await Ingredient.findByPk(ingredientId)
-        ingredient.destroy();
     
-        setTimeout(() => {
-            res.redirect(`/formulas/add-ingredients/${ingredient.formulaId}`)
-        }, 500);
-        
-    } catch (err) {
-        console.log(err)
-    }
 });
 
 // @dec     Delete formula
 // @route   POST /formulas/delete/:formulaId
 // @access  Public
 router.post('/delete/:formulaId', async (req, res, next) => {
-    try {
-        const formulaId = req.params.formulaId;
-        const formula = await Formula.findByPk(formulaId);
-        formula.destroy();
-
-        setTimeout(() => {
-            res.redirect('/formulas')
-        }, 500);
-    } catch (err) {
-        console.log(err)
-    }
+    
 })
 
 module.exports = router;

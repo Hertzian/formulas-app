@@ -1,13 +1,18 @@
-const Sequelize = require('sequelize');
-const db = require('../config/db');
+const mongoose = require('mongoose');
 
-const Formula = db.define('formula', {
+const FormulaSchema = new mongoose.Schema({
   name: {
-    type: Sequelize.STRING
+    type: String,
+    required: [true, 'Es necesario un nombre']
   },
   unit: {
-    type: Sequelize.DOUBLE
+    type: String,
+    required: [true, 'Es necesario un nombre']
   },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-module.exports = Formula;
+module.exports = mongoose.model('Formula', FormulaSchema);

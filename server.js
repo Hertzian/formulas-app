@@ -4,13 +4,12 @@ const hbs = require('express-handlebars');
 const path = require('path');
 dotenv.config({path: './config/config.env'});
 const errorRoutes = require('./routes/error');
-// const sequelize = require('./config/db');
+const connectDB = require('./config/db');
+
+// connect to DB
+connectDB();
 
 const app = express();
-
-// models to relationship
-const Formula = require('./models/formula');
-const Ingredient = require('./models/ingredient');
 
 // Handlebars
 app.engine('hbs', hbs({
@@ -19,13 +18,14 @@ app.engine('hbs', hbs({
 }));
 app.set('view engine', 'hbs');
 
-// init routes
-const formulaRoutes = require('./routes/formulas')
 
 // to encode req and can catch it! (previously uses body-Parser)
 app.use(express.urlencoded(
     { extended: false }
-));
+    ));
+    
+// init routes
+const formulaRoutes = require('./routes/formulas')
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,22 +38,7 @@ app.get('/', (req, res, next) => {
 app.use('/formulas/', formulaRoutes);
 app.use(errorRoutes.get404);
 
-// relationship
-Ingredient.belongsTo(Formula, {
-    constraints: true,
-    onDelete: 'CASCADE'
-});
-Formula.hasMany(Ingredient);
-
-
-// sequelize
-//     // .sync({force: true})
-//     .sync()
-//     .then(result => {
-        app.listen(
-            // process.env.PORT,
-            5000,
-            // console.log(`Server running on port ${process.env.PORT}`)
-        );
-    // })
-    // .catch(err => console.log(err))
+app.listen(
+    process.env.PORT,
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`)
+);
