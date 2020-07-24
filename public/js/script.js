@@ -36,6 +36,7 @@ function submitEditIngredient(editIngredient){
     const input = document.getElementById(`hiddenEdit-${pureId[1]}`)
     const form = document.getElementById(`editForm-${pureId[1]}`)
 
+    // console.log(pureId)
     input.value = value.value;
     form.submit();
 }
