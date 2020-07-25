@@ -9,6 +9,8 @@ const wishValue = document.getElementById('wishValue');
 const result = document.getElementById('result');
 const again = document.getElementById('again');
 
+let errors = false
+
 // open/close menu
 ham.addEventListener('click', () => {
     ham.classList.toggle('is-active');
@@ -55,7 +57,12 @@ if(again){
         calculate.removeAttribute('disabled', true)
         result.innerHTML = '';
         wishValue.value = '';
+
+        if(errors){
+            clearValidationError()
+        }
     })
+
 }
 
 // calculate values
@@ -63,9 +70,10 @@ if(calculate){
     calculate.addEventListener('click', (e) => {
         e.preventDefault();
 
-        console.log(wishValue.value)
-
-        validateCalculate(wishValue.value)
+        if(!validateCalculate(wishValue.value)){
+            errors = true
+            return
+        }
     
         let rawValues = [];
         
@@ -83,14 +91,37 @@ if(calculate){
 
 function validateCalculate(input){
     const re = /^[0-9]*$/;
-    if(!re.test(input.value)){
-        let p = document.createElement('p');
-        p.textContent = 'Introduce solo numeros';
-        p.setAttribute('class', 'help is-danger');
-        // const parentDiv = wishValue.parentNode;
-        wishValue.parentNode.insertBefore(p, wishValue)
-        calculate.setAttribute('disabled', true)
+    
+    if(!re.test(input)){
+        paintValidationError('Solo números')
+        return false
     }
+    if(input === ''){
+        paintValidationError('No puede ir vacío')
+        return false
+    }
+
+    return true
+}
+
+function paintValidationError(message){
+    const p = document.createElement('p');
+
+    p.textContent = message;
+    p.setAttribute('id', 'validationPaint')
+    p.setAttribute('class', 'help is-danger');
+    
+    wishValue.parentNode.insertBefore(p, wishValue)
+    wishValue.classList.add('is-danger')
+
+    calculate.setAttribute('disabled', true)
+}
+
+function clearValidationError(){
+    error = false
+    const p = document.getElementById('validationPaint')
+    wishValue.parentNode.removeChild(p, wishValue)
+    wishValue.classList.remove('is-danger')
 }
     
 // create html template

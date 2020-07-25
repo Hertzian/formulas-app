@@ -49,8 +49,8 @@ router.post('/add', async (req, res, next) => {
 router.get('/add-ingredients/:formulaId', async (req, res, next) => {
   try{
     const formulaId = req.params.formulaId
+    const ingredients = await Ingredient.find({formula: formulaId}).populate('formula').lean()
     const formula = await Formula.findById(formulaId).lean()
-    const ingredients = await Ingredient.find({formula: formulaId}).lean()
 
     res.render('addIngredients', {
       ingredients,
