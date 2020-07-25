@@ -101,13 +101,13 @@ router.post('/edit-ingredients/:ingredientId', async (req, res, next) => {
 router.post('/delete-ingredients/:ingredientId', async (req, res, next) => {
   try {
     const ingredientId = req.params.ingredientId
-    const ingredient = await Ingredient.findOneAndDelete(ingredientId)
+    const ingredient = await Ingredient.findByIdAndDelete(ingredientId)
 
     const formulaId = ingredient.formula;
 
     res.redirect(`/formulas/add-ingredients/${formulaId}`)
   } catch (err) {
-    
+    console.log(err)
   }
 });
 
@@ -115,7 +115,14 @@ router.post('/delete-ingredients/:ingredientId', async (req, res, next) => {
 // @route   POST /formulas/delete/:formulaId
 // @access  Public
 router.post('/delete/:formulaId', async (req, res, next) => {
-    
+    try {
+      const formulaId = req.params.formulaId
+      await Formula.findByIdAndDelete(formulaId)
+
+      res.redirect('/formulas')
+    } catch (err) {
+      console.log(err)
+    }
 })
 
 module.exports = router;
