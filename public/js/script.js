@@ -12,10 +12,12 @@ const again = document.getElementById('again');
 let errors = false
 
 // open/close menu
-ham.addEventListener('click', () => {
-    ham.classList.toggle('is-active');
-    menu.classList.toggle('is-active');
-});
+if(ham){
+    ham.addEventListener('click', () => {
+        ham.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+    });
+}
 
 // close delete ingredient modal
 function closeDeleteModal(modalId){
