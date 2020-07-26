@@ -5,7 +5,7 @@ const router = express.Router();
 
 // @dec     get all formulas
 // @route   /formulas
-// @access  Public
+// @access  Private
 router.get('/', async (req, res, next) => {
   try {
     let formulas = await Formula.find().lean();
@@ -20,14 +20,14 @@ router.get('/', async (req, res, next) => {
 
 // @dec     Display Create formula view
 // @route   GET /formulas/create
-// @access  Public
+// @access  Private
 router.get('/add', (req, res, next) => {
   res.render('addFormula');
 })
 
 // @dec     Create formula
 // @route   POST /formulas/create
-// @access  Public
+// @access  Private
 router.post('/add', async (req, res, next) => {
   try {
     await Formula.create({
@@ -43,77 +43,9 @@ router.post('/add', async (req, res, next) => {
   }
 });
 
-// @dec     Display Add ingredients view
-// @route   GET /formulas/add-ingredients/:formulaId
-// @access  Public
-router.get('/add-ingredients/:formulaId', async (req, res, next) => {
-  try{
-    const formulaId = req.params.formulaId
-    const ingredients = await Ingredient.find({formula: formulaId}).populate('formula').lean()
-    const formula = await Formula.findById(formulaId).lean()
-
-    res.render('addIngredients', {
-      ingredients,
-      formula
-    })
-  }catch(err){
-    console.log(err)
-  }
-});
-
-// @dec     Add new ingredient to selected formula
-// @route   POST /formulas/add-ingredients
-// @access  Public
-router.post('/add-ingredients', async (req, res, next) => {
-  try{
-    await Ingredient.create({
-      name: req.body.name,
-      unit: req.body.unit,
-      formula: req.body.formulaId 
-    })
-
-    res.redirect(`/formulas/add-ingredients/${req.body.formulaId }`)
-  } catch(err){
-    console.log(err)
-  }   
-});
-
-// @dec     Edit ingredient
-// @route   POST /formulas/edit-ingredients/:ingredientId
-// @access  Public
-router.post('/edit-ingredients/:ingredientId', async (req, res, next) => {
-  try {
-    let ingredient = await Ingredient.findOneAndUpdate(
-      {_id: req.params.ingredientId},
-      req.body,
-      {new: true, runValidators: true}
-    );
-
-    res.redirect(`/formulas/add-ingredients/${ingredient.formula}`)
-  } catch (err) {
-    console.log(err)
-  }
-});
-
-// @dec     Delete ingredient
-// @route   POST /formulas/delete-ingredients/:ingredientId
-// @access  Public
-router.post('/delete-ingredients/:ingredientId', async (req, res, next) => {
-  try {
-    const ingredientId = req.params.ingredientId
-    const ingredient = await Ingredient.findByIdAndDelete(ingredientId)
-
-    const formulaId = ingredient.formula;
-
-    res.redirect(`/formulas/add-ingredients/${formulaId}`)
-  } catch (err) {
-    console.log(err)
-  }
-});
-
 // @dec     Delete formula
 // @route   POST /formulas/delete/:formulaId
-// @access  Public
+// @access  Private
 router.post('/delete/:formulaId', async (req, res, next) => {
     try {
       const formulaId = req.params.formulaId

@@ -3,7 +3,7 @@
         <a href="/formulas/add" class="button is-primary is-rounded level-item"><i class="fas fa-plus"></i>Agregar</a>
     </div>
     <div class="level-right">
-        <a href="/formulas/add" class="button is-danger is-rounded level-item"><i class="fa fa-sign-out" aria-hidden="true"></i>Salir</a>
+        <a href="#" class="button is-danger is-rounded level-item"><i class="fa fa-sign-out" aria-hidden="true"></i>Salir</a>
     </div>
 </div>
 
@@ -13,7 +13,7 @@
     <div class="card">
         <header class="card-header">
             <p class="card-header-title is-relative" style="width: 100%;">{{name}}</p>
-            <a href="/formulas/add-ingredients/{{_id}}" class="card-footer-item"><span class="icon has-text-success"><i class="far fa-eye"></i></span></a>
+            <a href="/ingredients/add-ingredients/{{_id}}" class="card-footer-item"><span class="icon has-text-success"><i class="far fa-eye"></i></span></a>
             {{!-- <a href="#" class="card-footer-item"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a> --}}
             <a id="deleteFormulaBtn-{{_id}}" class="card-footer-item"onclick="deleteModal(this.id)"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
         </header>

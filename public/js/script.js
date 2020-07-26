@@ -95,7 +95,7 @@ function validateCalculate(input){
     const re = /^[0-9]*$/;
     
     if(!re.test(input)){
-        paintValidationError('Solo números')
+        paintValidationError('Solo números enteros')
         return false
     }
     if(input === ''){

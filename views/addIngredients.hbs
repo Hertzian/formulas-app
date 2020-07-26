@@ -2,7 +2,7 @@
 <hr>
 <div class="card">
 
-    <form class="eraseFunction" action="/formulas/add-ingredients" method="POST">
+    <form class="eraseFunction" action="/ingredients/add-ingredients" method="POST">
 
         <header class="card-header">
             <p class="card-header-title">Ingredientes para hacer {{formula.name}}</p>
@@ -69,7 +69,7 @@
             <a id="editIngredietBtn-{{_id}}" class="card-footer-item editIngredient" onclick="submitEditIngredient(this.id)"><span class="icon has-text-warning"><i class="far fa-edit"></i></span></a>
             <a id="deleteIngredient-{{_id}}" class="card-footer-item deleteIngredientBtn" onclick="deleteModal(this.id)"><span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
 
-            <form id="editForm-{{_id}}" action="/formulas/edit-ingredients/{{_id}}" method="post">
+            <form id="editForm-{{_id}}" action="/ingredients/edit-ingredients/{{_id}}" method="post">
                 <input id="hiddenEdit-{{_id}}" type="hidden" name="unit" value="">
             </form>
 
@@ -85,7 +85,7 @@
                     <p>Estás seguro de borrar el ingrediente #{{name}}?</p>
 
                     <div class="field is-grouped">
-                        <form action="/formulas/delete-ingredients/{{_id}}" method="post">
+                        <form action="/ingredients/delete-ingredients/{{_id}}" method="post">
                             <button class="button is-danger mx-1" type="submit">Sí eliminar</button>
                         </form>
                         <button id="closeBtn-{{_id}}" class="button is-primary mx-1 closeBtn" onclick="closeDeleteModal(this.id)">cancelar</button>
