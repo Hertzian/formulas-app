@@ -4,6 +4,7 @@ const hbs = require('express-handlebars');
 const path = require('path');
 dotenv.config({path: './config/config.env'});
 const errorRoutes = require('./routes/error');
+const passport = require('passport');
 const session = require('express-session');
 const connectDB = require('./config/db');
 
@@ -38,12 +39,6 @@ const ingredientRoutes = require('./routes/ingredients')
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.get('/', (req, res, next) => {
-//     // res.render('index');
-//     // renders login view
-//     res.render('layouts/login');
-// });
 
 // Routes
 app.use('/', authRoutes);
