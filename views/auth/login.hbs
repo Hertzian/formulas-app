@@ -1,0 +1,44 @@
+<div class="card">
+
+  <header class="card-header">
+    <p class="card-header-title">Bienvenido</p>
+  </header>
+
+  <div class="card-content">
+    <div class="content">
+
+      <form id="login"action="/login" method="post">
+
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input id="email" class="input" type="email" name="email" placeholder="Email">
+          <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left">
+          <input id="password" class="input" type="password" name="password" placeholder="Contraseña">
+          <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+        </p>
+      </div>
+
+      </form>
+      
+    </div>
+  </div>
+
+  <footer class="card-footer">
+    <a id="btn-login" href="#" class="card-footer-item has-text-primary" onclick="submitForm(this.id)">Ingresar <span class="icon has-text-primary"><i class="fas fa-sign-in-alt"></i></span></a>
+    <a href="#" class="card-footer-item has-text-danger">Cancelar <span class="icon has-text-danger"><i class="fas fa-times"></i></span></a>
+  </footer>
+
+
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <p class="card-header-title">Si aún no tienes una cuenta, <a class="tag is-link" href="/register">Regístrate</a></p>
+
+  </div>
+</div>

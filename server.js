@@ -32,17 +32,21 @@ app.use(express.urlencoded(
 ));
     
 // init routes
+const authRoutes = require('./routes/auth')
 const formulaRoutes = require('./routes/formulas')
 const ingredientRoutes = require('./routes/ingredients')
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res, next) => {
-    res.render('index');
-});
+// app.get('/', (req, res, next) => {
+//     // res.render('index');
+//     // renders login view
+//     res.render('layouts/login');
+// });
 
 // Routes
+app.use('/', authRoutes);
 app.use('/formulas/', formulaRoutes);
 app.use('/ingredients/', ingredientRoutes);
 app.use(errorRoutes.get404);

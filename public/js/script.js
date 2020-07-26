@@ -45,6 +45,14 @@ function submitEditIngredient(editIngredient){
     form.submit();
 }
 
+function submitForm(formEntry){
+    const pureId = formEntry.split('-')
+    const form = document.getElementById(`${pureId[1]}`)
+
+    form.submit()
+    console.log(form)
+}
+
 function eraseFunction(){
     const forms = document.getElementsByClassName('eraseFunction');
     for (const form of forms) {
