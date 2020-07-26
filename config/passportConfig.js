@@ -7,6 +7,7 @@ module.exports = function (passport) {
     new localStrategy(
       {usernameField: 'email', passwordField: 'password'},
       async (email, password, done) => {
+
         const user = await User.findOne({email})
 
         // if no user

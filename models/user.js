@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'El password es obligatorio'],
     minlength: 6,
-    select: false
+    // select: false
   },
   createdAt: {
     type: Date,

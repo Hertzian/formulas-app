@@ -13,6 +13,9 @@ connectDB();
 
 const app = express();
 
+// passport config
+require('./config/passportConfig')(passport);
+
 // Handlebars
 app.engine('hbs', hbs({
     defaultLayout: 'main',
@@ -24,7 +27,7 @@ app.set('view engine', 'hbs');
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 }));
 
 // to encode req and can catch it! (previously uses body-Parser)
@@ -39,6 +42,10 @@ const ingredientRoutes = require('./routes/ingredients')
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use('/', authRoutes);
