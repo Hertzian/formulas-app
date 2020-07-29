@@ -18,6 +18,7 @@ router.post('/login', (req, res, next ) => {
     failureRedirect: '/',
     failureFlash: true
   })(req, res, next)
+  console.log('success login!')
 });
 
 // @dec     register view
@@ -77,8 +78,10 @@ router.post('/register', async (req, res, next) => {
 // @dec     logout
 // @route   GET /logout
 // @access  Private
-router.get('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
+  console.log(req.logout())
   req.logout();
+  console.log('sesion closed!')
   // req.flash('success_msg', 'Cerraste sessión')
   res.redirect('/')
 })
