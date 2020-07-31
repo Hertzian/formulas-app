@@ -30,6 +30,9 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// flash
+app.use(require('flash')())
+
 // to encode req and can catch it! (previously uses body-Parser)
 app.use(express.urlencoded(
     { extended: false }

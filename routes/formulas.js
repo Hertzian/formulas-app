@@ -1,12 +1,13 @@
 const express = require('express');
 const Formula = require('../models/formula');
 const Ingredient = require('../models/ingredient');
+const {checkAuth} = require('../middlewares/auth')
 const router = express.Router();
 
 // @dec     get all formulas
 // @route   /formulas
 // @access  Private
-router.get('/', async (req, res, next) => {
+router.get('/', checkAuth, async (req, res, next) => {
   try {
     let formulas = await Formula.find().lean();
     
@@ -21,14 +22,14 @@ router.get('/', async (req, res, next) => {
 // @dec     Display Create formula view
 // @route   GET /formulas/create
 // @access  Private
-router.get('/add', (req, res, next) => {
+router.get('/add', checkAuth, (req, res, next) => {
   res.render('addFormula');
 })
 
 // @dec     Create formula
 // @route   POST /formulas/create
 // @access  Private
-router.post('/add', async (req, res, next) => {
+router.post('/add', checkAuth, async (req, res, next) => {
   try {
     await Formula.create({
       name: req.body.name,
@@ -46,7 +47,7 @@ router.post('/add', async (req, res, next) => {
 // @dec     Delete formula
 // @route   POST /formulas/delete/:formulaId
 // @access  Private
-router.post('/delete/:formulaId', async (req, res, next) => {
+router.post('/delete/:formulaId', checkAuth, async (req, res, next) => {
     try {
       const formulaId = req.params.formulaId
       await Formula.findByIdAndDelete(formulaId)

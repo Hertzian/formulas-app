@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const {checkAuth} = require('../middlewares/auth')
 const Formula = require('../models/formula')
 const Ingredient = require('../models/ingredient')
 
 // @dec     Display Add ingredients view
 // @route   GET /ingredients/add-ingredients/:formulaId
 // @access  Private
-router.get('/add-ingredients/:formulaId', async (req, res, next) => {
+router.get('/add-ingredients/:formulaId', checkAuth, async (req, res, next) => {
   try{
     const formulaId = req.params.formulaId
     const ingredients = await Ingredient.find({formula: formulaId}).populate('formula').lean()
@@ -24,7 +25,7 @@ router.get('/add-ingredients/:formulaId', async (req, res, next) => {
 // @dec     Add new ingredient to selected formula
 // @route   POST /ingredients/add-ingredients
 // @access  Private
-router.post('/add-ingredients', async (req, res, next) => {
+router.post('/add-ingredients', checkAuth, async (req, res, next) => {
   try{
     await Ingredient.create({
       name: req.body.name,
@@ -41,7 +42,7 @@ router.post('/add-ingredients', async (req, res, next) => {
 // @dec     Edit ingredient
 // @route   POST /ingredients/edit-ingredients/:ingredientId
 // @access  Private
-router.post('/edit-ingredients/:ingredientId', async (req, res, next) => {
+router.post('/edit-ingredients/:ingredientId', checkAuth, async (req, res, next) => {
   try {
     let ingredient = await Ingredient.findOneAndUpdate(
       {_id: req.params.ingredientId},
@@ -58,7 +59,7 @@ router.post('/edit-ingredients/:ingredientId', async (req, res, next) => {
 // @dec     Delete ingredient
 // @route   POST /ingredients/delete-ingredients/:ingredientId
 // @access  Private
-router.post('/delete-ingredients/:ingredientId', async (req, res, next) => {
+router.post('/delete-ingredients/:ingredientId', checkAuth, async (req, res, next) => {
   try {
     const ingredientId = req.params.ingredientId
     const ingredient = await Ingredient.findByIdAndDelete(ingredientId)
