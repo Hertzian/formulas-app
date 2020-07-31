@@ -24,7 +24,11 @@ router.post('/login', checkYesAuth, (req, res, next ) => {
 // @dec     register view
 // @route   GET /register
 // @access  Public
-router.get('/register', checkYesAuth, (req, res, next) => res.render('auth/register'))
+router.get('/register', checkYesAuth, (req, res, next) => {
+  req.flash('success', 'ejemplo')
+
+  res.render('auth/register')
+})
 
 // @dec     register view
 // @route   POST /register
@@ -74,10 +78,8 @@ router.post('/register', checkYesAuth, async (req, res, next) => {
 // @route   GET /logout
 // @access  Private
 router.post('/logout', checkAuth, (req, res, next) => {
-  console.log(req.logout())
   req.logout();
-  console.log('sesion closed!')
-  // req.flash('success_msg', 'Cerraste sessión')
+  req.flash('success', 'Cerraste sessión')
   res.redirect('/')
 })
 
