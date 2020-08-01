@@ -17,7 +17,7 @@ router.post('/login', checkYesAuth, (req, res, next ) => {
   passport.authenticate('local', {
     successRedirect: '/formulas',
     failureRedirect: '/',
-    failureFlash: true
+    failureFlash: 'Verifica tus datos'
   })(req, res, next)
 });
 
@@ -66,6 +66,7 @@ router.post('/register', checkYesAuth, async (req, res, next) => {
         password: await bcrypt.hash(password, 10)
       })
       
+      req.flash('success', 'Ahora puedes autenticarte')
       res.redirect('/')
     }
     

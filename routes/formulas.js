@@ -16,6 +16,8 @@ router.get('/', checkAuth, async (req, res, next) => {
     });
   } catch (err) {
     console.log(err)
+    req.flash('danger', 'Ha ocurrido un error')
+    res.redirect('/formulas')
   }
 });
 
@@ -36,11 +38,12 @@ router.post('/add', checkAuth, async (req, res, next) => {
       unit: req.body.unit
     })
 
+    req.flash('success', 'Se agregó tu fórmula')
     res.redirect('/formulas')
-
   } catch (err) {
-    res.render('formulas', {error: 'Ha ocurrido un error'})
     console.log(err)
+    req.flash('danger', 'Ha ocurrido un error')
+    res.redirect('/formulas')
   }
 });
 
@@ -52,9 +55,12 @@ router.post('/delete/:formulaId', checkAuth, async (req, res, next) => {
       const formulaId = req.params.formulaId
       await Formula.findByIdAndDelete(formulaId)
 
+      req.flash('danger', 'Se eliminó tu fórmula')
       res.redirect('/formulas')
     } catch (err) {
       console.log(err)
+      req.flash('danger', 'Ha ocurrido un error')
+      res.redirect('/formulas')
     }
 })
 

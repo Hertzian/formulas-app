@@ -1,19 +1,23 @@
-<p>hola</p>
-
-<p><a href="http://localhost:5000/express-flash">express-flash</a> for a flash message using the express-flash module.</p>
-<p><a href="http://localhost:5000/session-flash">session-flash</a> for a flash message using custom middleware</p>
-
-{{#if expressFlash}}
-    <p><strong>FLASH!</strong> {{ expressFlash }}</p>
-{{/if}}
-
-{{#if sessionFlash.message}}
-    <div class="{{ sessionFlash.type }}">
-        <strong>FLASH!</strong> {{ sessionFlash.message }}
+{{#if danger}}
+    <div class="notification is-danger is-light">
+    <button class="delete"></button>
+        {{ danger }}
     </div>
 {{/if}}
 
+{{#if success}}
+    <div class="notification is-success is-light">
+    <button class="delete"></button>
+        {{ success }}
+    </div>
+{{/if}}
 
+{{#if error}}
+    <div class="notification is-warning is-light">
+    <button class="delete"></button>
+        {{error}}
+    </div>
+{{/if}}
 
 
 

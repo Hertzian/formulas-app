@@ -8,8 +8,16 @@ const calculate = document.getElementById('calculate');
 const wishValue = document.getElementById('wishValue');
 const result = document.getElementById('result');
 const again = document.getElementById('again');
+const notifications = document.getElementsByClassName('notification')
 
 let errors = false
+
+// remove notifications after 3 secs
+setTimeout(() => {
+    for(notification of notifications){
+        notification.remove()
+    }
+}, 3000);
 
 // open/close menu
 if(ham){

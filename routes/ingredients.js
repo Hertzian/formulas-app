@@ -19,6 +19,8 @@ router.get('/add-ingredients/:formulaId', checkAuth, async (req, res, next) => {
     })
   }catch(err){
     console.log(err)
+    req.flash('danger', 'Ha ocurrido un error')
+    res.redirect('/ingredients')
   }
 });
 
@@ -33,6 +35,7 @@ router.post('/add-ingredients', checkAuth, async (req, res, next) => {
       formula: req.body.formulaId 
     })
 
+    req.flash('success', 'Se agregó tu ingrediente')
     res.redirect(`/ingredients/add-ingredients/${req.body.formulaId }`)
   } catch(err){
     console.log(err)
@@ -50,6 +53,7 @@ router.post('/edit-ingredients/:ingredientId', checkAuth, async (req, res, next)
       {new: true, runValidators: true}
     );
 
+    req.flash('success', 'Se actualizo tu ingrediente')
     res.redirect(`/ingredients/add-ingredients/${ingredient.formula}`)
   } catch (err) {
     console.log(err)
@@ -66,6 +70,7 @@ router.post('/delete-ingredients/:ingredientId', checkAuth, async (req, res, nex
 
     const formulaId = ingredient.formula;
 
+    req.flash('danger', 'Se eliminó tu ingrediente')
     res.redirect(`/ingredients/add-ingredients/${formulaId}`)
   } catch (err) {
     console.log(err)
