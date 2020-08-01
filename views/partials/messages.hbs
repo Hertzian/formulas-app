@@ -19,8 +19,9 @@
     </div>
 {{/if}}
 
-
-
-
-
-
+{{#each errors}}
+    <div class="notification is-warning is-light">
+    <button class="delete"></button>
+        {{this.msg}}
+    </div>
+{{/each}}

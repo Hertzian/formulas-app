@@ -13,11 +13,13 @@ const notifications = document.getElementsByClassName('notification')
 let errors = false
 
 // remove notifications after 3 secs
-setTimeout(() => {
-    for(notification of notifications){
-        notification.remove()
+if(notifications){
+    for (const not of notifications) {
+        setTimeout(() => {
+            not.remove()
+        }, 3000);
     }
-}, 3000);
+}
 
 // open/close menu
 if(ham){
