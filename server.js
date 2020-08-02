@@ -3,9 +3,7 @@ const dotenv = require('dotenv');
 const hbs = require('express-handlebars');
 const path = require('path');
 const flash = require('express-flash');
-if(process.env.NODE_ENV == 'development'){
-    dotenv.config({path: './config/config.env'});
-}
+dotenv.config({path: './config/config.env'});
 const errorRoutes = require('./routes/error');
 const passport = require('passport');
 const session = require('express-session');

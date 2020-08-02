@@ -9,7 +9,8 @@ const router = express.Router();
 // @access  Private
 router.get('/', checkAuth, async (req, res, next) => {
   try {
-    let formulas = await Formula.find().lean();
+    let formulas = await Formula.find({user: req.user}).lean();
+    console.log(req.user.id)
     
     res.render('formulas', {
       formulas
@@ -35,7 +36,8 @@ router.post('/add', checkAuth, async (req, res, next) => {
   try {
     await Formula.create({
       name: req.body.name,
-      unit: req.body.unit
+      unit: req.body.unit,
+      user: req.user
     })
 
     req.flash('success', 'Se agregó tu fórmula')
