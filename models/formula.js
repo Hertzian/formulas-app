@@ -9,6 +9,10 @@ const FormulaSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Es necesario un nombre']
   },
+  quantity: {
+    type: String,
+    required: true
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'

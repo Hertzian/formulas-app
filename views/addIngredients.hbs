@@ -19,8 +19,11 @@
                 <label class="label">Nuevo ingrediente</label>
                 <input class="input" type="text" name="name" placeholder="Escribe el nombre...">
 
+                <label class="label">Unidad</label>
+                <input class="input" type="text" name="unit" placeholder="Que unidad tiene...">
+
                 <label class="label">Cantidad</label>
-                <input class="input" type="text" name="unit" placeholder="Cuanto requiere...">
+                <input class="input" type="number" name="quantity" placeholder="Cuanto necesita...">
                 <input type="hidden" name="formulaId" value="{{formula._id}}">
 
             </div>
@@ -52,14 +55,14 @@
 
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Unidades</label>
+                    <label class="label unit">{{unit}}</label>
                 </div>
 
                 <div class="field-body">
 
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input id="editValue-{{_id}}" class="input quantity" type="text" placeholder="Name" value="{{unit}}">
+                            <input id="editValue-{{_id}}" class="input quantity" type="text" placeholder="Name" value="{{quantity}}">
                         </p>
                     </div>
                     

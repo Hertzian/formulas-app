@@ -32,6 +32,7 @@ router.post('/add-ingredients', checkAuth, async (req, res, next) => {
     await Ingredient.create({
       name: req.body.name,
       unit: req.body.unit,
+      quantity: req.body.quantity,
       formula: req.body.formulaId 
     })
 

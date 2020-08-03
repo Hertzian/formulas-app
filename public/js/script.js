@@ -3,6 +3,7 @@ const menu = document.getElementById('navbarBasicExample');
 const btnClose = document.getElementsByClassName('closeBtn');
 const deleteIngredientBtn = document.getElementsByClassName('deleteIngredientBtn');
 const quantity = document.getElementsByClassName('quantity');
+const unit = document.getElementsByClassName('unit')
 const ingredient = document.getElementsByClassName('ingredient');
 const calculate = document.getElementById('calculate');
 const wishValue = document.getElementById('wishValue');
@@ -100,7 +101,7 @@ if(calculate){
         for (let i = 0; i < quantity.length; i++) {
             rawValues.push(quantity[i].value * wishValue.value)
     
-            const htmlString = resultTemplate(rawValues[i], ingredient[i].innerText)
+            const htmlString = resultTemplate(unit[i].innerHTML, rawValues[i], ingredient[i].innerText)
             const resultElement = createTemplate(htmlString)
             calculate.setAttribute('disabled', true)
     
@@ -152,14 +153,14 @@ function createTemplate(HTMLString){
 }
 
 // result template
-function resultTemplate(quantity, ingredient){
+function resultTemplate(unit, quantity, ingredient){
     return `
     <div class="card">
         <header class="card-header">
             <p class="card-header-title is-relative" style="width: 100%;">${ingredient}</p>
     
             <div class="field is-horizontal">
-                <div class="field-label is-normal"><label class="label">Unidades</label></div>
+                <div class="field-label is-normal"><label class="label">${unit}</label></div>
     
                 <div class="field-body">
                     <div class="field">

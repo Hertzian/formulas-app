@@ -34,9 +34,11 @@ router.get('/add', checkAuth, (req, res, next) => {
 // @access  Private
 router.post('/add', checkAuth, async (req, res, next) => {
   try {
+    console.log(req.body)
     await Formula.create({
       name: req.body.name,
       unit: req.body.unit,
+      quantity: req.body.quantity,
       user: req.user
     })
 

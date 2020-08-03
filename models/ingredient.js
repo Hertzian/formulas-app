@@ -9,6 +9,10 @@ const IngredientSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Es necesario un nombre']
   },
+  quantity: {
+    type: String,
+    required: true
+  },
   formula: {
     type: mongoose.Schema.ObjectId,
     ref: 'Formula'
